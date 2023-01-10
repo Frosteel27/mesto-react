@@ -1,4 +1,4 @@
-function PopupWithImage(props) {
+function ImagePopup(props) {
     return(
         <div className={`popup popup_type_enlarge ${Object.keys(props.card).length === 0 ? '' : 'popup_opened'}`}>
         <div className="popup__enlarge-container">
@@ -10,4 +10,4 @@ function PopupWithImage(props) {
     )
 }
 
-export default PopupWithImage;
+export default ImagePopup;
