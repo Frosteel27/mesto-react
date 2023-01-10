@@ -1,0 +1,13 @@
+.card__like {
+    border: 0;
+    padding: 0;
+    margin: 0 20px 0 0;
+    justify-self: end;
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    
+}
+
