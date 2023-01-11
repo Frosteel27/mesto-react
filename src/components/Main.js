@@ -1,27 +1,29 @@
-import React from "react";
+import {useState, useEffect} from "react";
 import api from "../utils/Api";
 import imgAdd from "../images/add.svg";
 import imgEdit from "../images/change.svg";
 import Card from "./Card";
 
-function Main(props) {
-    const [userName, setUserName] = React.useState();
-    const [userDescription, setUserDescription] = React.useState();
-    const [userAvatar, setUserAvatar] = React.useState();
-    const [cards, setCards] = React.useState([]);
+function Main({onEditProfile, onEditAvatar, onAddPlace, onCardClick}) {
+    const [userName, setUserName] = useState('');
+    const [userDescription, setUserDescription] = useState('');
+    const [userAvatar, setUserAvatar] = useState('');
+    const [cards, setCards] = useState([]);
 
-    React.useEffect(() => {
+    useEffect(() => {
         api.getUserInfo()
             .then((userInfo) => {
                 setUserName(userInfo.name);
                 setUserDescription(userInfo.about);
                 setUserAvatar(userInfo.avatar);
             })
+            .catch((err) => {console.log(err)})
         
             api.getInintialCards()
             .then((cardList) => {
                 setCards(cardList);
             })
+            .catch((err) => {console.log(err)})
     }, [])
 
     return(
@@ -29,19 +31,19 @@ function Main(props) {
             <section className="profile">
                 <div className="profile__avatar-container">
                     <img src={userAvatar} alt="Кусто Жак-Ив" className="profile__avatar" />
-                    <div className="profile__avatar-overlay" onClick={props.onEditAvatar}></div>
+                    <div className="profile__avatar-overlay" onClick={onEditAvatar}></div>
                 </div>                
                 <div className="profile__title">
                     <h1 className="profile__name">{userName}</h1>
-                    <button aria-label="edit" className="profile__edit" onClick={props.onEditProfile}><img src={imgEdit} alt="Редактировать" className="profile__edit-ico" /></button>
+                    <button aria-label="edit" className="profile__edit" onClick={onEditProfile}><img src={imgEdit} alt="Редактировать" className="profile__edit-ico" /></button>
                     <p className="profile__job">{userDescription}</p>
                 </div>
-                <button aria-label="add" className="profile__add"  onClick={props.onAddPlace}><img src={imgAdd} alt="Добавить"/></button>
+                <button aria-label="add" className="profile__add"  onClick={onAddPlace}><img src={imgAdd} alt="Добавить"/></button>
             </section>
             <section className="gallery">
                 <ul className="gallery__grid" >
                     {cards.map((card) => {
-                         return <Card card={card} key={card._id} onCardClick={props.onCardClick}/>
+                         return <Card card={card} key={card._id} onCardClick={onCardClick}/>
                     })}
                 </ul>
             </section>

@@ -1,9 +1,9 @@
 
 
-function Header(props) {
+function Header({logo}) {
     return (
         <header className="header">
-            <img src={props.logo} alt="Место" className="header__logo" />
+            <img src={logo} alt="Место" className="header__logo" />
         </header>
     )
 }

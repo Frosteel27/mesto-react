@@ -1,10 +1,10 @@
-function ImagePopup(props) {
+function ImagePopup({card, onClose}) {
     return(
-        <div className={`popup popup_type_enlarge ${Object.keys(props.card).length === 0 ? '' : 'popup_opened'}`}>
+        <div className={`popup popup_type_enlarge ${card.hasOwnProperty('name') ? 'popup_opened' : ''}`}>
         <div className="popup__enlarge-container">
-            <button type="button" className="popup__close" onClick={props.onClose}></button>
-            <img src={props.card.link} alt="" className="popup__enlarge-image" />
-            <h2 className="popup__enlarge-caption">{props.card.name}</h2>
+            <button type="button" className="popup__close" onClick={onClose}></button>
+            <img src={card.link} alt={card.name} className="popup__enlarge-image" />
+            <h2 className="popup__enlarge-caption">{card.name}</h2>
         </div>
     </div>
     )
