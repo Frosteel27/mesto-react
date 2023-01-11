@@ -2,6 +2,8 @@
 
 Старый добрый Жак-Ив Кусто, теперь и на Реакте!
 
+[Ссылка на gh-pages](https://frosteel27.github.io/mesto-react/)
+
 ## Технологии: 
     - React, предоставленный компанией Facebook.
     - Create React App, пердоставленный ими же.
