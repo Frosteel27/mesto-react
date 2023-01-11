@@ -1,6 +1,6 @@
 # Mesto-React
 
-Старый добрый Жак-Ив Кусто, теперь и на Реакте!
+Старый добрый Жак-Ив Кусто, теперь и на Реакте!\
 
 [Ссылка на gh-pages]([http://localhost:3000](https://frosteel27.github.io/mesto-react/))
 
