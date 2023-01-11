@@ -1,4 +1,4 @@
-import React from "react";
+import {useState} from "react";
 import logo from "../images/logo.svg";
 import Header from "./Header";
 import Main from "./Main";
@@ -7,10 +7,10 @@ import PopupWithForm from "./PopupWithForm";
 import ImagePopup from "./ImagePopup";
 
 function App() {
-  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
-  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
-  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({});
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = useState(false);
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({});
 
   function handleEditAvatarClick() {
     setIsEditAvatarPopupOpen(true);
@@ -44,7 +44,7 @@ function App() {
 
         <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
 
-        <PopupWithForm name="profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name="profile" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
                 <label className="popup__formfield">
                     <input id="name-input" type="text" name="name" placeholder="Имя" required minLength="2" maxLength="40" className="popup__input" />
                 <span className="name-input-error popup__input-error"></span>
@@ -55,14 +55,14 @@ function App() {
                 </label>    
         </PopupWithForm>
 
-        <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
                 <label className="popup__formfield">
                     <input id="avatar-input" type="url" name="avatar" placeholder="Ссылка на картинку" className="popup__input" required />
                     <span className="avatar-input-error popup__input-error"></span>
                 </label> 
         </PopupWithForm>
 
-        <PopupWithForm name="upload" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name="upload" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} buttonText="Создать">
         <label className="popup__formfield">
                     <input id="name-input" type="text" name="name" placeholder="Имя" required minLength="2" maxLength="40" className="popup__input" />
                 <span className="name-input-error popup__input-error"></span>
