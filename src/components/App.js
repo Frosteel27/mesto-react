@@ -49,46 +49,45 @@ function App() {
 
   function handleLikeClick(card) {
     const isLiked = card.likes.some(user => user._id === currentUser._id);
+    let likeRespond;
 
     if(!isLiked) {
-      api.putLike(card)
-        .then((newCard) => {
-          setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-        })
-        .catch(err => console.log(err))
+      likeRespond = api.putLike(card);      
+        
     } else {
-      api.deleteLike(card)
-        .then((newCard) => {
-          setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
-        })
-        .catch(err => console.log(err))
+      likeRespond = api.deleteLike(card)
     }
+    likeRespond
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
+      })
+      .catch(err => console.log(err))
   }
 
   function handleDeleteClick(card) {
     api.deleteCard(card)
-      .then(setCards(cards.filter(item => item !== card)))
+      .then(setCards(cards.filter(item => item._id !== card._id)))
       .catch(err => console.log(err))
   }
 
   function handleUpdateUser(userInfo) {
     api.setUserInfo(userInfo)
       .then(res => setCurrentUser(res))
-      .then(closeAllPopups())
+      .then(closeAllPopups)
       .catch(err => console.log(err))
   }
 
   function handleUpdateAvatar(avatar) {
     api.setUserAvatar(avatar)
       .then(res => setCurrentUser(res))
-      .then(closeAllPopups())
+      .then(closeAllPopups)
       .catch(err => console.log(err))
   }
 
   function handleAddPlaceSubmit(newCard) {
     api.uploadCard(newCard)
       .then(res => setCards([res, ...cards]))
-      .then(closeAllPopups())
+      .then(closeAllPopups)
       .catch(err => console.log(err))
   }
 

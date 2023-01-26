@@ -9,22 +9,18 @@ export default function AddPlacePopup({isOpen, onClose, onAddPlace }) {
         onAddPlace(newCard)
     }
 
-    function handlePostnameChange(evt) {
-        setNewCard({...newCard, name: evt.target.value});
-    }
-
-    function handlePostsrcChange(evt) {
-        setNewCard({...newCard, link: evt.target.value});
+    function handleInputChange(evt) {
+        setNewCard({...newCard, [evt.target.name]: evt.target.value});
     }
 
     return (
         <PopupWithForm name="upload" title="Новое место" isOpen={isOpen} onClose={onClose} buttonText="Создать" onSubmitForm={handleSubmit}>
                 <label className="popup__formfield">
-                    <input id="postname-input" type="text" name="name" placeholder="Название" className="popup__input" required minLength="2" maxLength="30" onChange={handlePostnameChange} />
+                    <input value={newCard.name} id="postname-input" type="text" name="name" placeholder="Название" className="popup__input" required minLength="2" maxLength="30" onChange={handleInputChange} />
                     <span className="postname-input-error popup__input-error"></span>
                 </label>
                 <label className="popup__formfield">
-                    <input id="postsrc-input" type="url" name="link" placeholder="Ссылка на картинку" className="popup__input" required onChange={handlePostsrcChange} />
+                    <input value={newCard.link} id="postsrc-input" type="url" name="link" placeholder="Ссылка на картинку" className="popup__input" required onChange={handleInputChange} />
                     <span className="postsrc-input-error popup__input-error"></span>
                 </label>                
         </PopupWithForm>
